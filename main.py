@@ -196,8 +196,9 @@ def run_test(session_best: float) -> float:
         return session_best
 
     typed_words = tokenize(user_input)
-    wpm         = calculate_wpm(len(typed_words), elapsed)
+    raw_wpm     = calculate_wpm(len(typed_words), elapsed)
     accuracy    = calculate_accuracy(original_words, typed_words)
+    wpm         = round(raw_wpm * (accuracy / 100.0), 2)
     correct_count, incorrect_count, details = compare_words(original_words, typed_words)
 
     if wpm > session_best:

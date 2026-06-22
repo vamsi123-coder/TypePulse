@@ -70,11 +70,8 @@ function calcGrossWpm(typedLength, elapsedMs) {
   return ((typedLength / 5) / minutes).toFixed(1);
 }
 
-function calcNetWpm(typedLength, incorrectWords, elapsedMs) {
-  if (elapsedMs <= 0 || typedLength <= 0) return '0.0';
-  const minutes  = elapsedMs / 60000;
-  const gross    = (typedLength / 5) / minutes;
-  const net      = Math.max(0, gross - (incorrectWords / minutes));
+function calcNetWpm(grossWpm, charAccuracy) {
+  const net = parseFloat(grossWpm) * (charAccuracy / 100);
   return net.toFixed(1);
 }
 
@@ -208,11 +205,9 @@ function finishTest() {
 
   const elapsed  = performance.now() - startTime;
   const typed    = hiddenInput.value;
-  const { accuracy, correct, incorrect, details } = calcWordAccuracy(currentParagraph, typed);
+  const { accuracy, correct, incorrect, total, details } = calcWordAccuracy(currentParagraph, typed);
 
   const grossWpm = calcGrossWpm(typed.length, elapsed);
-  const netWpm   = calcNetWpm(typed.length, incorrect, elapsed);
-  const speed    = classifySpeed(parseFloat(netWpm));
 
   // Character-level stats
   const totalChars   = typed.length;
@@ -221,6 +216,9 @@ function finishTest() {
     if (typed[i] === currentParagraph[i]) correctChars++;
   }
   const charAccuracy = totalChars > 0 ? Math.round((correctChars / totalChars) * 100) : 0;
+
+  const netWpm   = calcNetWpm(grossWpm, charAccuracy);
+  const speed    = classifySpeed(parseFloat(netWpm));
 
   if (parseFloat(netWpm) > sessionBest) {
     sessionBest = parseFloat(netWpm);
@@ -238,7 +236,7 @@ function finishTest() {
   resCharAcc.textContent      = charAccuracy + '%';
 
   // Row 3
-  resTotalWords.textContent = correct + incorrect;
+  resTotalWords.textContent = total;
   resCorrect.textContent    = correct;
   resAcc.textContent        = accuracy + '%';
 

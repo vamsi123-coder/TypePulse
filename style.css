@@ -392,6 +392,24 @@ body {
 .skill-badge.advanced     { background: rgba(74,222,128,.15); color: #4ade80; border: 1px solid rgba(74,222,128,.3); }
 .skill-badge.expert       { background: rgba(192,132,252,.15); color: #c084fc; border: 1px solid rgba(192,132,252,.3); }
 
+.mastery-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  font-size: .95rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  padding: .75rem 1.2rem;
+  background: var(--bg2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.mastery-text {
+  color: var(--text-dim);
+}
+
+
 .results-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
