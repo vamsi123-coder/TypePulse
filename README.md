@@ -2,6 +2,8 @@
 
 A dual-experience typing speed utility featuring a **premium, responsive web application** and a **colorized command-line terminal interface**. Test your typing speed, accuracy, and detailed performance metrics to improve your skill level.
 
+🔗 **Live Demo:** [vamsi-type-pulse.vercel.app](https://vamsi-type-pulse.vercel.app/)
+
 ---
 
 ## 🌐 Modern Web App Interface (`index.html`)
@@ -59,13 +61,13 @@ A standalone terminal typing speed tester written in Python. It draws from the s
 ```
 Typing_Speed_Tester/
 │
-├── index.html        # Main web app layout (HUD, chips, 3x3 results card)
-├── style.css         # Custom responsive design system (Glassmorphism, dark/light themes)
-├── script.js        # Web app logic (Performance counters, typing events, WPM math)
+├── index.html        # Main web app layout
+├── style.css         # Custom responsive design system
+├── script.js        # Web app logic
 │
-├── main.py           # CLI python entry point (ANSI console loops & countdowns)
+├── main.py           # CLI python entry point
 ├── paragraphs.py     # Shared pool of 15 paragraphs of various topics
-└── README.md         # Documentation (this file)
+└── README.md         # Documentation
 ```
 
 ---
